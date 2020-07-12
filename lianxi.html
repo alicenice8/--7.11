@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Object
+
+
+        //对象拼接
+        var obj1 = { name: "张三" };
+        var obj2 = { age: 18 };
+        var obj3 = {
+            say: function () {
+                console.log("说话")
+            }
+        }
+        console.log(Object.assign(obj1, obj2, obj3));
+        console.log(obj1, obj2);
+        // 对象拷贝
+        var obj = { name: "张三", age: 20 }
+        var newObj = Object.assign({}, obj)
+        console.log(newObj)
+
+        //判断两个值是否相同
+        console.log(Object.is(9, 2))
+        console.log(Object.is(2, 2))
+
+        //确定一个对象是否存在于另一个对象的原型链中
+        function a() {
+
+        }
+        var b = new a();
+        console.log(a.prototype.isPrototypeOf(b))
+
+        //直接在一个对象上定义一个新属性，或修改现有属性
+        var obj = new Object();
+        Object.defineProperty(obj, 'age', {
+            configurable: false,
+            writable: true,
+            enumerable: true,
+            value: 18
+        })
+        console.log(obj.age)
+
+        //直接在一个对象上定义一个或多个新的属性或修改现有属性，并返回该对象
+        var obj = new Object();
+        Object.defineProperties(obj, {
+            name: {
+                value: '张三',
+                configurable: false,
+                writable: true,
+                enumberable: true
+            },
+            age: {
+                value: 18,
+                configurable: true
+            }
+        })
+        console.log(obj.name, obj.age)
+
+        //阻止修改现有属性的特性和值，并阻止添加新属性。
+        var obj = { name: "张三", age: 18 };
+        Object.freeze(obj)
+        obj.name = "李四";
+        obj.sex = "男";
+        console.log(obj)
+
+        //for in循环遍历
+        var obj = {
+            name: "小米",
+            age: 18,
+            say: function () {
+                console.log('你好')
+            }
+        }
+        for (var i in obj) {
+            console.log(obj[i]);
+        }
+
+
+        Object.keys(obj)//返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含 Symbol 属性）的键名。
+        var obj = { a: '123', b: '345' }
+        var obj1 = { 100: 'a', 2: 'b', 7: 'c' }
+        var obj2 = { name: "张三", sex: "man", age: 18 }
+        console.log(Object.keys(obj))
+        console.log(Object.keys(obj1))
+        console.log(Object.keys(obj2))
+
+        Object.getOwnPropertyNames(obj);//返回一个数组,包含对象自身的所有属性(不含Symbol属性,但是包括不可枚举属性).
+        const obj = {};
+        Object.defineProperties(obj, {
+            property1: { enumerable: true, value: 1 },
+            property2: { enumerable: false, value: 2 },
+        });
+        console.log(Object.keys(obj));
+        console.log(Object.getOwnPropertyNames(obj));
+         Object.getOwnPropertySymbols(obj)
+
+        Object.getOwnPropertySymbols(obj);//返回一个数组，包含对象自身的所有Symbol属性。
+        var obj = { id: Symbol('123'), name: 'zhangsan' };
+        console.log(Reflect.ownKeys(obj))
+        console.log(Object.getOwnPropertySymbols(obj))
+
+        Object.values(obj)//方法返回一个给定对象自身的所有可枚举属性值的数组，值的顺序与使用for...in循环的顺序相同( 区别在于 for-in 循环枚举原型链中的属性 )。
+        var obj = { id: Symbol('123'), name: 'zhangsan' };
+        console.log(Object.values(obj))
+    </script>
+    <script>
+        //Math对象
+
+
+        //返回绝对值
+        var x = -9;
+        console.log(Math.abs(x))
+
+        // 返回x四舍五入之后的整数值
+        var x = 4.6
+        console.log(Math.round(x))
+
+        // // 返回x的近似值，向上取整
+        var x = 4.2
+        console.log(Math.ceil(x))
+
+        // 返回x的近似值，向下取整
+        var x = 4.9
+        console.log(Math.floor(x))
+
+        // 返回x,y中的最大值
+        var x = 5, y = 7
+        console.log(Math.max(x, y))
+
+        // 返回一个0~1之间的数字
+        console.log(Math.random())
+
+        // 将x的小数部分去除，返回整数部分(ie不能使用)
+        var x = 3.1415
+        console.log(Math.trunc(x))
+
+        // 取x的y次幂
+        var x = 2, y = 3
+        console.log(Math.pow(x, y))
+
+        // 返回x的平方根
+        var x = 16
+        console.log(Math.sqrt(x))
+
+        // 返回x的正弦值
+        var x = 90
+        console.log(Math.sin(x))
+
+        // 可把 Number 四舍五入为指定小数位数的数字
+        var x = 3.1415926
+        console.log(x.toFixed(4))
+    </script>
+    <script>
+        //String对象
+
+
+
+        var str = "hello word"
+        console.log(str.charAt(2))     // 返回下标为index的子字符串
+        console.log(str.charCodeAt(2))   //根据下标，返回对应下标的字符的ACSCII码
+
+        console.log(String.fromCharCode(97))
+        console.log(str.lastIndexOf('o'))
+        console.log(str.indexOf('o'))
+
+        var str1 = str.replace('o', 'a');   //替换
+        console.log(str1)
+
+        var str2 = str.slice(5, -1);     //截取
+        console.log(str2)
+
+        var str3 = str.substring(1, 5);     //截取
+        console.log(str3)
+
+        var str4 = str.substr(0, 5)
+        console.log(str4)
+
+        console.log(str.split(''))  //分割
+
+        console.log(str.toLocaleUpperCase())  //大写
+
+        var st = '  aa  bb  '    //去左右空格
+        console.log(st.trim())
+
+        console.log(str.match('o'))    //检索
+
+        console.log(str.concat('a', 'b', 'c'))  //连接
+
+        var s = 'abc'.padStart(10);  //添加字符达到指定长度
+
+
+        console.log(s)
+        var time = new Date();
+        var h = String(time.getHours()).padStart(2, '0')
+        var m = String(time.getMinutes()).padStart(2, '0')
+        var s = String(time.getSeconds()).padStart(2, '0')
+        console.log(`${h}:${m}:${s}`)   
+    </script>
+    <script>
+        //向数组的末尾追加元素
+        function fun1(){
+        var arr=[1,2,3]
+         var arr1=[4,5,6]
+        arr.push(arr,arr1);
+        for(var i=0;i<arr.length;i++){
+        console.log(arr[i])
+    }
+}
+//向数组的开头添加函数
+function fun2(){
+        var arr=[1,2,3]
+        arr.unshift(arr);
+        for(var i=0;i<arr.length;i++){
+        console.log(arr[i])
+    }
+}
+//arr.pop(); 删除末尾的元素
+function fun3(){
+        var arr=[1,2,3]
+        arr.pop();
+        for(var i=0;i<arr.length;i++){
+        console.log(arr[i])
+    }
+}
+//arr.shift(); 开头删除一个元素
+function fun4(){
+        var arr=[1,2,3]
+        arr.shift();
+        for(var i=0;i<arr.length;i++){
+        console.log(arr[i])
+    }
+}
+//arr.splice(位置，删除元素的个数，要追加的元素); 任意位置添加删除
+function fun5(){
+        var arr=[1,2,3]
+        arr.splice(1,1,8);
+        for(var i=0;i<arr.length;i++){
+        console.log(arr[i])
+    }
+}
+//arr.join("分隔符") 使用分隔符将数组数据隔开变为字符串
+function fun6(){
+        var arr=[1,2,3]
+        arr.join();
+        for(var i=0;i<arr.length;i++){
+        console.log(arr[i])
+    }
+}
+//arr.slice(截取的起始下标,结束下标) 数组的截取
+function fun7(){
+        var arr=[1,2,3]
+        return console.log(arr.slice(0,1));
+    }
+    //arr.concat 多个数组的连接
+function fun8(){
+        var arr=[1,2,3]
+        var arr1=[5,8,9]
+        return console.log(arr.concat(arr1,[11,12,15]));
+    }
+    //arr.indexOf(值); 查找某个值在数组中第一次出现的下标
+function fun9(){
+        var arr=[1,2,3]
+        return console.log(arr.indexOf(2));
+    }
+    //arr.lastIndexOf(值); 倒叙查找某个值在数组中第一次出现的位置
+function fun10(){
+        var arr=[1,2,3,12,45,62,33,12,52]
+        return console.log(arr.lastIndexOf(12));
+    }
+    //arr.sort() 数组的排序
+function fun11(){
+        var arr=[1,2,3,4,45,62,33,12,52]
+        arr.sort(function(a,b){  
+return a-b;
+})
+     console.log(arr);
+}
+//arr.forEach() 遍历数组
+function fun12(){
+    var arr3=[1,5,6,99,52,663,22,66,552,6,622];
+     arr3.forEach(function(value,index){
+    console.log(index,value)
+})
+}
+//arr.filter() 过滤（根据条件筛选数组元素）
+function fun13(){
+    var arr=[1,5,6,99,52,663,22,66,552,123,6,622];
+    var newArr =arr.filter(function(value,index){
+     return value>100;       
+})
+console.log(newArr);
+}
+//arr.map() 映射 将数组中的所有数据按照条件改变，形成新数组
+function fun14(){
+    var arr=[1,5,6,99,52,663,22,66,552,123,6,622];
+var end = arr.map((value,index)=>value*2);
+console.log(end);
+}
+//arr.some() 判断 根据回调函数的判断条件来选择真假
+function fun15(){
+    var arr3=[1,5,6,99,52,663,22,66,552,123,6,622];
+     var end=arr3.some(function(value,index){
+return value<500;
+});
+console.log(end);
+}
+//arr.every() 判断 根据回调函数的判断条件来选择真假(与some比较记忆)
+function fun16(){
+    var arr3=[1,5,6,99,52,663,22,66,552,123,6,622];
+    var end=arr3.every(function(value,index){
+    return value<500;
+});
+console.log(end); 
+}
+//arr.reverse() 数组倒序
+function fun17(){
+    var arr=[1,5,8,6,9,4,2,3];
+    console.log(arr.reverse());     
+    console.log(arr); 
+}
+
+//Array.from方法用于将两类对象转为真正的数组：类似数组的对象和可遍历的对象（包括 ES6 新增的数据结构 Set 和 Map）
+function fun18(){
+    var a={length:2,0:'aaa',1:'bbb'};  
+    Array.from(a);        
+    var b={length:2};  
+    Array.from(b); 
+}
+//Array.of
+//Array.of方法用于将一组值，转换为数组。
+//Array.of总是返回参数值组成的数组。如果没有参数，就返回一个空数组。
+function fun19(){
+    Array.of() 
+    Array.of(undefined) 
+    Array.of(1) 
+    Array.of(1, 2)
+}
+
+function fun20(){
+    var arr = [1,2,{name:"张三"}]
+    arr.includes(2)     
+    arr.includes(4)     
+    arr.includes({name:"张三"})   
+}
+
+function fun21(){
+    var arr=[1,2,3,4,5,6,7,8,9];
+    arr.sort(()=>Math.random()-0.5)
+    console.log(arr);
+}
+
+    </script>
+</body>
+</html>
